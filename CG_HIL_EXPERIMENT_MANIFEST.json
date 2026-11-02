@@ -1,0 +1,2224 @@
+{
+  "stage": "TEST_EVALUATED_ONCE",
+  "created_utc": "2026-11-02T07:17:40.471940+00:00",
+  "commit": "959a6444729ebc6cef0c75f6854637fa2ecddd73",
+  "output": "results/cghil_m0_m4_20261102",
+  "input": "application_train.csv",
+  "dataset_sha256": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f",
+  "source_sha256": {
+    "run_cghil_experiment.py": "e097cfc5154cf74a7cee39ecb826254a5087ae548fb9cef64d612d843e876cf9",
+    "test_run_cghil_experiment.py": "703755d92de95563eb068f9d56340cfe41a4feccf83bfd3b22a2e777f666afe0",
+    "02_XGBOOST_PROTOCOL_USULAN.md": "8679ddd3eade105ea85d849a4b4acf92c5d25d706924f122fd677b1ab855802e",
+    "requirements-xgboost.txt": "e7a9f817a15f92976d307c3b71b1915fc915100519f8b8df37bb96702a7498ca",
+    "precheck_smotenc_cghil.py": "3345948bd21f3fefb0b33caacb32c6cdba755aee3ca1456821fcb3da5f25bc1a",
+    "cghil_semantics.py": "fdd45b0111d0d4330b5864e8634f5a8e76758919e4fa57fd15bf8d0ad4cac4b5",
+    "test_cghil_semantics.py": "1a98a14e6a74a7aa31d6c037d47f0f6350b7b8a029aa29184baecf1b3ca04d44",
+    "generate_final_validation_report.py": "29c7a38a5b58b381a1da990611d3cc2ca6f9d5bb428c7a391b463b61fec3b55b",
+    "HOME_CREDIT_FEATURE_DICTIONARY_AUDITED.csv": "7717c7892cc28b7b98e83df711ecc4ae7b28b245baf33ec4fb66b967c8bbee73"
+  },
+  "versions": {
+    "python": "3.13.5",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "imbalanced-learn": "0.14.2",
+    "xgboost-cpu": "3.4.1"
+  },
+  "params": {
+    "objective": "binary:logistic",
+    "tree_method": "hist",
+    "n_estimators": 300,
+    "max_depth": 4,
+    "learning_rate": 0.05,
+    "min_child_weight": 5,
+    "subsample": 1.0,
+    "colsample_bytree": 1.0,
+    "reg_lambda": 1.0,
+    "reg_alpha": 0.0,
+    "gamma": 0.0,
+    "scale_pos_weight": 1.0,
+    "random_state": 42,
+    "n_jobs": 4,
+    "eval_metric": "logloss"
+  },
+  "seed": 42,
+  "features": [
+    "NAME_CONTRACT_TYPE",
+    "CODE_GENDER",
+    "FLAG_OWN_CAR",
+    "FLAG_OWN_REALTY",
+    "CNT_CHILDREN",
+    "AMT_INCOME_TOTAL",
+    "AMT_CREDIT",
+    "AMT_ANNUITY",
+    "AMT_GOODS_PRICE",
+    "NAME_TYPE_SUITE",
+    "NAME_INCOME_TYPE",
+    "NAME_EDUCATION_TYPE",
+    "NAME_FAMILY_STATUS",
+    "NAME_HOUSING_TYPE",
+    "REGION_POPULATION_RELATIVE",
+    "DAYS_BIRTH",
+    "DAYS_EMPLOYED",
+    "DAYS_REGISTRATION",
+    "DAYS_ID_PUBLISH",
+    "OWN_CAR_AGE",
+    "FLAG_MOBIL",
+    "FLAG_EMP_PHONE",
+    "FLAG_WORK_PHONE",
+    "FLAG_CONT_MOBILE",
+    "FLAG_PHONE",
+    "FLAG_EMAIL",
+    "OCCUPATION_TYPE",
+    "CNT_FAM_MEMBERS",
+    "REGION_RATING_CLIENT",
+    "REGION_RATING_CLIENT_W_CITY",
+    "WEEKDAY_APPR_PROCESS_START",
+    "HOUR_APPR_PROCESS_START",
+    "REG_REGION_NOT_LIVE_REGION",
+    "REG_REGION_NOT_WORK_REGION",
+    "LIVE_REGION_NOT_WORK_REGION",
+    "REG_CITY_NOT_LIVE_CITY",
+    "REG_CITY_NOT_WORK_CITY",
+    "LIVE_CITY_NOT_WORK_CITY",
+    "ORGANIZATION_TYPE",
+    "EXT_SOURCE_1",
+    "EXT_SOURCE_2",
+    "EXT_SOURCE_3",
+    "APARTMENTS_AVG",
+    "BASEMENTAREA_AVG",
+    "YEARS_BEGINEXPLUATATION_AVG",
+    "YEARS_BUILD_AVG",
+    "COMMONAREA_AVG",
+    "ELEVATORS_AVG",
+    "ENTRANCES_AVG",
+    "FLOORSMAX_AVG",
+    "FLOORSMIN_AVG",
+    "LANDAREA_AVG",
+    "LIVINGAPARTMENTS_AVG",
+    "LIVINGAREA_AVG",
+    "NONLIVINGAPARTMENTS_AVG",
+    "NONLIVINGAREA_AVG",
+    "APARTMENTS_MODE",
+    "BASEMENTAREA_MODE",
+    "YEARS_BEGINEXPLUATATION_MODE",
+    "YEARS_BUILD_MODE",
+    "COMMONAREA_MODE",
+    "ELEVATORS_MODE",
+    "ENTRANCES_MODE",
+    "FLOORSMAX_MODE",
+    "FLOORSMIN_MODE",
+    "LANDAREA_MODE",
+    "LIVINGAPARTMENTS_MODE",
+    "LIVINGAREA_MODE",
+    "NONLIVINGAPARTMENTS_MODE",
+    "NONLIVINGAREA_MODE",
+    "APARTMENTS_MEDI",
+    "BASEMENTAREA_MEDI",
+    "YEARS_BEGINEXPLUATATION_MEDI",
+    "YEARS_BUILD_MEDI",
+    "COMMONAREA_MEDI",
+    "ELEVATORS_MEDI",
+    "ENTRANCES_MEDI",
+    "FLOORSMAX_MEDI",
+    "FLOORSMIN_MEDI",
+    "LANDAREA_MEDI",
+    "LIVINGAPARTMENTS_MEDI",
+    "LIVINGAREA_MEDI",
+    "NONLIVINGAPARTMENTS_MEDI",
+    "NONLIVINGAREA_MEDI",
+    "FONDKAPREMONT_MODE",
+    "HOUSETYPE_MODE",
+    "TOTALAREA_MODE",
+    "WALLSMATERIAL_MODE",
+    "EMERGENCYSTATE_MODE",
+    "OBS_30_CNT_SOCIAL_CIRCLE",
+    "DEF_30_CNT_SOCIAL_CIRCLE",
+    "OBS_60_CNT_SOCIAL_CIRCLE",
+    "DEF_60_CNT_SOCIAL_CIRCLE",
+    "DAYS_LAST_PHONE_CHANGE",
+    "FLAG_DOCUMENT_2",
+    "FLAG_DOCUMENT_3",
+    "FLAG_DOCUMENT_4",
+    "FLAG_DOCUMENT_5",
+    "FLAG_DOCUMENT_6",
+    "FLAG_DOCUMENT_7",
+    "FLAG_DOCUMENT_8",
+    "FLAG_DOCUMENT_9",
+    "FLAG_DOCUMENT_10",
+    "FLAG_DOCUMENT_11",
+    "FLAG_DOCUMENT_12",
+    "FLAG_DOCUMENT_13",
+    "FLAG_DOCUMENT_14",
+    "FLAG_DOCUMENT_15",
+    "FLAG_DOCUMENT_16",
+    "FLAG_DOCUMENT_17",
+    "FLAG_DOCUMENT_18",
+    "FLAG_DOCUMENT_19",
+    "FLAG_DOCUMENT_20",
+    "FLAG_DOCUMENT_21",
+    "AMT_REQ_CREDIT_BUREAU_HOUR",
+    "AMT_REQ_CREDIT_BUREAU_DAY",
+    "AMT_REQ_CREDIT_BUREAU_WEEK",
+    "AMT_REQ_CREDIT_BUREAU_MON",
+    "AMT_REQ_CREDIT_BUREAU_QRT",
+    "AMT_REQ_CREDIT_BUREAU_YEAR"
+  ],
+  "numeric": [
+    "CNT_CHILDREN",
+    "AMT_INCOME_TOTAL",
+    "AMT_CREDIT",
+    "AMT_ANNUITY",
+    "AMT_GOODS_PRICE",
+    "REGION_POPULATION_RELATIVE",
+    "DAYS_BIRTH",
+    "DAYS_EMPLOYED",
+    "DAYS_REGISTRATION",
+    "DAYS_ID_PUBLISH",
+    "OWN_CAR_AGE",
+    "CNT_FAM_MEMBERS",
+    "EXT_SOURCE_1",
+    "EXT_SOURCE_2",
+    "EXT_SOURCE_3",
+    "APARTMENTS_AVG",
+    "BASEMENTAREA_AVG",
+    "YEARS_BEGINEXPLUATATION_AVG",
+    "YEARS_BUILD_AVG",
+    "COMMONAREA_AVG",
+    "ELEVATORS_AVG",
+    "ENTRANCES_AVG",
+    "FLOORSMAX_AVG",
+    "FLOORSMIN_AVG",
+    "LANDAREA_AVG",
+    "LIVINGAPARTMENTS_AVG",
+    "LIVINGAREA_AVG",
+    "NONLIVINGAPARTMENTS_AVG",
+    "NONLIVINGAREA_AVG",
+    "APARTMENTS_MODE",
+    "BASEMENTAREA_MODE",
+    "YEARS_BEGINEXPLUATATION_MODE",
+    "YEARS_BUILD_MODE",
+    "COMMONAREA_MODE",
+    "ELEVATORS_MODE",
+    "ENTRANCES_MODE",
+    "FLOORSMAX_MODE",
+    "FLOORSMIN_MODE",
+    "LANDAREA_MODE",
+    "LIVINGAPARTMENTS_MODE",
+    "LIVINGAREA_MODE",
+    "NONLIVINGAPARTMENTS_MODE",
+    "NONLIVINGAREA_MODE",
+    "APARTMENTS_MEDI",
+    "BASEMENTAREA_MEDI",
+    "YEARS_BEGINEXPLUATATION_MEDI",
+    "YEARS_BUILD_MEDI",
+    "COMMONAREA_MEDI",
+    "ELEVATORS_MEDI",
+    "ENTRANCES_MEDI",
+    "FLOORSMAX_MEDI",
+    "FLOORSMIN_MEDI",
+    "LANDAREA_MEDI",
+    "LIVINGAPARTMENTS_MEDI",
+    "LIVINGAREA_MEDI",
+    "NONLIVINGAPARTMENTS_MEDI",
+    "NONLIVINGAREA_MEDI",
+    "TOTALAREA_MODE",
+    "OBS_30_CNT_SOCIAL_CIRCLE",
+    "DEF_30_CNT_SOCIAL_CIRCLE",
+    "OBS_60_CNT_SOCIAL_CIRCLE",
+    "DEF_60_CNT_SOCIAL_CIRCLE",
+    "DAYS_LAST_PHONE_CHANGE",
+    "AMT_REQ_CREDIT_BUREAU_HOUR",
+    "AMT_REQ_CREDIT_BUREAU_DAY",
+    "AMT_REQ_CREDIT_BUREAU_WEEK",
+    "AMT_REQ_CREDIT_BUREAU_MON",
+    "AMT_REQ_CREDIT_BUREAU_QRT",
+    "AMT_REQ_CREDIT_BUREAU_YEAR"
+  ],
+  "categorical": [
+    "NAME_CONTRACT_TYPE",
+    "CODE_GENDER",
+    "FLAG_OWN_CAR",
+    "FLAG_OWN_REALTY",
+    "NAME_TYPE_SUITE",
+    "NAME_INCOME_TYPE",
+    "NAME_EDUCATION_TYPE",
+    "NAME_FAMILY_STATUS",
+    "NAME_HOUSING_TYPE",
+    "FLAG_MOBIL",
+    "FLAG_EMP_PHONE",
+    "FLAG_WORK_PHONE",
+    "FLAG_CONT_MOBILE",
+    "FLAG_PHONE",
+    "FLAG_EMAIL",
+    "OCCUPATION_TYPE",
+    "REGION_RATING_CLIENT",
+    "REGION_RATING_CLIENT_W_CITY",
+    "WEEKDAY_APPR_PROCESS_START",
+    "HOUR_APPR_PROCESS_START",
+    "REG_REGION_NOT_LIVE_REGION",
+    "REG_REGION_NOT_WORK_REGION",
+    "LIVE_REGION_NOT_WORK_REGION",
+    "REG_CITY_NOT_LIVE_CITY",
+    "REG_CITY_NOT_WORK_CITY",
+    "LIVE_CITY_NOT_WORK_CITY",
+    "ORGANIZATION_TYPE",
+    "FONDKAPREMONT_MODE",
+    "HOUSETYPE_MODE",
+    "WALLSMATERIAL_MODE",
+    "EMERGENCYSTATE_MODE",
+    "FLAG_DOCUMENT_2",
+    "FLAG_DOCUMENT_3",
+    "FLAG_DOCUMENT_4",
+    "FLAG_DOCUMENT_5",
+    "FLAG_DOCUMENT_6",
+    "FLAG_DOCUMENT_7",
+    "FLAG_DOCUMENT_8",
+    "FLAG_DOCUMENT_9",
+    "FLAG_DOCUMENT_10",
+    "FLAG_DOCUMENT_11",
+    "FLAG_DOCUMENT_12",
+    "FLAG_DOCUMENT_13",
+    "FLAG_DOCUMENT_14",
+    "FLAG_DOCUMENT_15",
+    "FLAG_DOCUMENT_16",
+    "FLAG_DOCUMENT_17",
+    "FLAG_DOCUMENT_18",
+    "FLAG_DOCUMENT_19",
+    "FLAG_DOCUMENT_20",
+    "FLAG_DOCUMENT_21"
+  ],
+  "removed_constants": [],
+  "encoder_categories": [
+    [
+      "Cash loans",
+      "Revolving loans"
+    ],
+    [
+      "F",
+      "M",
+      "XNA"
+    ],
+    [
+      "N",
+      "Y"
+    ],
+    [
+      "N",
+      "Y"
+    ],
+    [
+      "Children",
+      "Family",
+      "Group of people",
+      "Other_A",
+      "Other_B",
+      "Spouse, partner",
+      "Unaccompanied",
+      "__MISSING__"
+    ],
+    [
+      "Businessman",
+      "Commercial associate",
+      "Maternity leave",
+      "Pensioner",
+      "State servant",
+      "Student",
+      "Unemployed",
+      "Working"
+    ],
+    [
+      "Academic degree",
+      "Higher education",
+      "Incomplete higher",
+      "Lower secondary",
+      "Secondary / secondary special"
+    ],
+    [
+      "Civil marriage",
+      "Married",
+      "Separated",
+      "Single / not married",
+      "Unknown",
+      "Widow"
+    ],
+    [
+      "Co-op apartment",
+      "House / apartment",
+      "Municipal apartment",
+      "Office apartment",
+      "Rented apartment",
+      "With parents"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "Accountants",
+      "Cleaning staff",
+      "Cooking staff",
+      "Core staff",
+      "Drivers",
+      "HR staff",
+      "High skill tech staff",
+      "IT staff",
+      "Laborers",
+      "Low-skill Laborers",
+      "Managers",
+      "Medicine staff",
+      "Private service staff",
+      "Realty agents",
+      "Sales staff",
+      "Secretaries",
+      "Security staff",
+      "Waiters/barmen staff",
+      "__MISSING__"
+    ],
+    [
+      "1",
+      "2",
+      "3"
+    ],
+    [
+      "1",
+      "2",
+      "3"
+    ],
+    [
+      "FRIDAY",
+      "MONDAY",
+      "SATURDAY",
+      "SUNDAY",
+      "THURSDAY",
+      "TUESDAY",
+      "WEDNESDAY"
+    ],
+    [
+      "0",
+      "1",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "2",
+      "20",
+      "21",
+      "22",
+      "23",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "Advertising",
+      "Agriculture",
+      "Bank",
+      "Business Entity Type 1",
+      "Business Entity Type 2",
+      "Business Entity Type 3",
+      "Cleaning",
+      "Construction",
+      "Culture",
+      "Electricity",
+      "Emergency",
+      "Government",
+      "Hotel",
+      "Housing",
+      "Industry: type 1",
+      "Industry: type 10",
+      "Industry: type 11",
+      "Industry: type 12",
+      "Industry: type 13",
+      "Industry: type 2",
+      "Industry: type 3",
+      "Industry: type 4",
+      "Industry: type 5",
+      "Industry: type 6",
+      "Industry: type 7",
+      "Industry: type 8",
+      "Industry: type 9",
+      "Insurance",
+      "Kindergarten",
+      "Legal Services",
+      "Medicine",
+      "Military",
+      "Mobile",
+      "Other",
+      "Police",
+      "Postal",
+      "Realtor",
+      "Religion",
+      "Restaurant",
+      "School",
+      "Security",
+      "Security Ministries",
+      "Self-employed",
+      "Services",
+      "Telecom",
+      "Trade: type 1",
+      "Trade: type 2",
+      "Trade: type 3",
+      "Trade: type 4",
+      "Trade: type 5",
+      "Trade: type 6",
+      "Trade: type 7",
+      "Transport: type 1",
+      "Transport: type 2",
+      "Transport: type 3",
+      "Transport: type 4",
+      "University",
+      "XNA"
+    ],
+    [
+      "__MISSING__",
+      "not specified",
+      "org spec account",
+      "reg oper account",
+      "reg oper spec account"
+    ],
+    [
+      "__MISSING__",
+      "block of flats",
+      "specific housing",
+      "terraced house"
+    ],
+    [
+      "Block",
+      "Mixed",
+      "Monolithic",
+      "Others",
+      "Panel",
+      "Stone, brick",
+      "Wooden",
+      "__MISSING__"
+    ],
+    [
+      "No",
+      "Yes",
+      "__MISSING__"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "1"
+    ]
+  ],
+  "encoder_config": {
+    "handle_unknown": "use_encoded_value",
+    "unknown_value": -1,
+    "dtype": "float64",
+    "fit_scope": "original train only"
+  },
+  "split": {
+    "train": {
+      "count": 215257,
+      "ordered_index_sha256": "693ceb768bba5f9fcd6b11b7aca117f67bb566d316609dece0a972b2d88bea3b"
+    },
+    "validation": {
+      "count": 46127,
+      "ordered_index_sha256": "046afe29f8202f14ca6e1fef30f320b013b7fa7704c1494dbecb9807b74ae77f"
+    },
+    "test": {
+      "count": 46127,
+      "ordered_index_sha256": "2bee30eb3cda90b32bce00ba51b64e475dc5505a2f09f7cede869be0a9fb506a"
+    }
+  },
+  "completeness": {
+    "tau": 0.6,
+    "E": 8636,
+    "U": 8741,
+    "S": 8636
+  },
+  "gates": {
+    "M0": {
+      "synthetic_count": 0,
+      "hard_remaining": {},
+      "original_count": 215257,
+      "positive_weight_total": 17377.0,
+      "original_prefix_equal": true,
+      "feature_schema_equal": true,
+      "synthetic_unknown_categories": 0,
+      "status": "PASS"
+    },
+    "M1": {
+      "synthetic_count": 0,
+      "hard_remaining": {},
+      "original_count": 215257,
+      "positive_weight_total": 34649.0,
+      "original_prefix_equal": true,
+      "feature_schema_equal": true,
+      "synthetic_unknown_categories": 0,
+      "status": "PASS"
+    },
+    "M2": {
+      "synthetic_count": 17272,
+      "source_positive_count": 17377,
+      "hard_remaining": {},
+      "semantic_validation": {
+        "category_domain:NAME_CONTRACT_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:CODE_GENDER": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_OWN_CAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_OWN_REALTY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_TYPE_SUITE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_INCOME_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_EDUCATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_FAMILY_STATUS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_HOUSING_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_MOBIL": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_EMP_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_WORK_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_CONT_MOBILE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_EMAIL": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:OCCUPATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REGION_RATING_CLIENT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REGION_RATING_CLIENT_W_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:WEEKDAY_APPR_PROCESS_START": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:HOUR_APPR_PROCESS_START": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_REGION_NOT_LIVE_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_REGION_NOT_WORK_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:LIVE_REGION_NOT_WORK_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_CITY_NOT_LIVE_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_CITY_NOT_WORK_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:LIVE_CITY_NOT_WORK_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:ORGANIZATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FONDKAPREMONT_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:HOUSETYPE_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:WALLSMATERIAL_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:EMERGENCYSTATE_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_2": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_3": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_4": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_5": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_6": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_7": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_8": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_9": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_10": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_11": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_12": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_13": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_14": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_15": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_16": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_17": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_18": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_19": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_20": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_21": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "numeric_nonfinite": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "numeric_missing": {
+          "severity": "diagnostic",
+          "count": 14972,
+          "pct": 86.68364983788791
+        },
+        "count_fractional:CNT_CHILDREN": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:CNT_CHILDREN": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:CNT_FAM_MEMBERS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:CNT_FAM_MEMBERS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:OBS_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:OBS_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:DEF_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:DEF_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:OBS_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:OBS_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:DEF_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:DEF_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_HOUR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_HOUR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_DAY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_DAY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_WEEK": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_WEEK": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_MON": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_MON": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_QRT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_QRT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_YEAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_YEAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "DEF30_gt_OBS30": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "DEF60_gt_OBS60": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "days_employed_positive": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "days_birth_nonnegative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_age_negative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_REGISTRATION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_ID_PUBLISH": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_LAST_PHONE_CHANGE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_N_age_present": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_Y_age_missing": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "organization_XNA_employed_present": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "pensioner_unemployed_nonXNA": {
+          "severity": "potential",
+          "count": 30,
+          "pct": 0.17369152385363595
+        },
+        "organization_XNA_occupation_present": {
+          "severity": "potential",
+          "count": 163,
+          "pct": 0.943723946271422
+        },
+        "employment_precedes_birth": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_older_than_client": {
+          "severity": "potential",
+          "count": 204,
+          "pct": 1.1811023622047243
+        }
+      },
+      "structural_nan_cells": 17367,
+      "original_count": 215257,
+      "positive_weight_total": 34649.0,
+      "original_prefix_equal": true,
+      "feature_schema_equal": true,
+      "synthetic_unknown_categories": 0,
+      "status": "PASS"
+    },
+    "M3": {
+      "synthetic_count": 8636,
+      "source_positive_count": 17377,
+      "hard_remaining": {},
+      "semantic_validation": {
+        "category_domain:NAME_CONTRACT_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:CODE_GENDER": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_OWN_CAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_OWN_REALTY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_TYPE_SUITE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_INCOME_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_EDUCATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_FAMILY_STATUS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_HOUSING_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_MOBIL": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_EMP_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_WORK_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_CONT_MOBILE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_EMAIL": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:OCCUPATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REGION_RATING_CLIENT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REGION_RATING_CLIENT_W_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:WEEKDAY_APPR_PROCESS_START": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:HOUR_APPR_PROCESS_START": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_REGION_NOT_LIVE_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_REGION_NOT_WORK_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:LIVE_REGION_NOT_WORK_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_CITY_NOT_LIVE_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_CITY_NOT_WORK_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:LIVE_CITY_NOT_WORK_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:ORGANIZATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FONDKAPREMONT_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:HOUSETYPE_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:WALLSMATERIAL_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:EMERGENCYSTATE_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_2": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_3": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_4": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_5": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_6": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_7": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_8": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_9": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_10": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_11": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_12": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_13": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_14": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_15": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_16": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_17": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_18": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_19": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_20": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_21": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "numeric_nonfinite": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "numeric_missing": {
+          "severity": "diagnostic",
+          "count": 7471,
+          "pct": 86.50995831403428
+        },
+        "count_fractional:CNT_CHILDREN": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:CNT_CHILDREN": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:CNT_FAM_MEMBERS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:CNT_FAM_MEMBERS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:OBS_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:OBS_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:DEF_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:DEF_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:OBS_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:OBS_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:DEF_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:DEF_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_HOUR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_HOUR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_DAY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_DAY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_WEEK": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_WEEK": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_MON": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_MON": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_QRT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_QRT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_YEAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_YEAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "DEF30_gt_OBS30": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "DEF60_gt_OBS60": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "days_employed_positive": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "days_birth_nonnegative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_age_negative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_REGISTRATION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_ID_PUBLISH": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_LAST_PHONE_CHANGE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_N_age_present": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_Y_age_missing": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "organization_XNA_employed_present": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "pensioner_unemployed_nonXNA": {
+          "severity": "potential",
+          "count": 17,
+          "pct": 0.1968503937007874
+        },
+        "organization_XNA_occupation_present": {
+          "severity": "potential",
+          "count": 77,
+          "pct": 0.8916164891153312
+        },
+        "employment_precedes_birth": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_older_than_client": {
+          "severity": "potential",
+          "count": 104,
+          "pct": 1.204261232051876
+        }
+      },
+      "structural_nan_cells": 8702,
+      "original_count": 215257,
+      "positive_weight_total": 34649.00000000001,
+      "original_prefix_equal": true,
+      "feature_schema_equal": true,
+      "synthetic_unknown_categories": 0,
+      "status": "PASS"
+    },
+    "M4": {
+      "synthetic_count": 8636,
+      "source_positive_count": 8636,
+      "hard_remaining": {},
+      "semantic_validation": {
+        "category_domain:NAME_CONTRACT_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:CODE_GENDER": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_OWN_CAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_OWN_REALTY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_TYPE_SUITE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_INCOME_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_EDUCATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_FAMILY_STATUS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:NAME_HOUSING_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_MOBIL": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_EMP_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_WORK_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_CONT_MOBILE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_PHONE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_EMAIL": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:OCCUPATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REGION_RATING_CLIENT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REGION_RATING_CLIENT_W_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:WEEKDAY_APPR_PROCESS_START": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:HOUR_APPR_PROCESS_START": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_REGION_NOT_LIVE_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_REGION_NOT_WORK_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:LIVE_REGION_NOT_WORK_REGION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_CITY_NOT_LIVE_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:REG_CITY_NOT_WORK_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:LIVE_CITY_NOT_WORK_CITY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:ORGANIZATION_TYPE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FONDKAPREMONT_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:HOUSETYPE_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:WALLSMATERIAL_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:EMERGENCYSTATE_MODE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_2": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_3": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_4": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_5": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_6": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_7": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_8": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_9": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_10": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_11": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_12": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_13": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_14": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_15": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_16": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_17": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_18": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_19": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_20": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain:FLAG_DOCUMENT_21": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "category_domain": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "numeric_nonfinite": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "numeric_missing": {
+          "severity": "diagnostic",
+          "count": 6780,
+          "pct": 78.50856878184345
+        },
+        "count_fractional:CNT_CHILDREN": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:CNT_CHILDREN": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:CNT_FAM_MEMBERS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:CNT_FAM_MEMBERS": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:OBS_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:OBS_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:DEF_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:DEF_30_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:OBS_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:OBS_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:DEF_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:DEF_60_CNT_SOCIAL_CIRCLE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_HOUR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_HOUR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_DAY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_DAY": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_WEEK": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_WEEK": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_MON": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_MON": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_QRT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_QRT": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional:AMT_REQ_CREDIT_BUREAU_YEAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative:AMT_REQ_CREDIT_BUREAU_YEAR": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_fractional": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "count_negative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "DEF30_gt_OBS30": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "DEF60_gt_OBS60": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "days_employed_positive": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "days_birth_nonnegative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_age_negative": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_REGISTRATION": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_ID_PUBLISH": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "relative_days_positive:DAYS_LAST_PHONE_CHANGE": {
+          "severity": "hard",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_N_age_present": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_Y_age_missing": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "organization_XNA_employed_present": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "pensioner_unemployed_nonXNA": {
+          "severity": "potential",
+          "count": 26,
+          "pct": 0.301065308012969
+        },
+        "organization_XNA_occupation_present": {
+          "severity": "potential",
+          "count": 88,
+          "pct": 1.0189902732746643
+        },
+        "employment_precedes_birth": {
+          "severity": "potential",
+          "count": 0,
+          "pct": 0.0
+        },
+        "car_older_than_client": {
+          "severity": "potential",
+          "count": 135,
+          "pct": 1.5632237146827235
+        }
+      },
+      "structural_nan_cells": 7879,
+      "original_count": 215257,
+      "positive_weight_total": 34649.0,
+      "original_prefix_equal": true,
+      "feature_schema_equal": true,
+      "synthetic_unknown_categories": 0,
+      "status": "PASS"
+    }
+  },
+  "test_evaluated": true,
+  "artifact_sha256": {
+    "prepared.joblib": "c570ff847e0ca0dff8c35702e7e046e7415fb09964fc39f27795f9a5abbd483d",
+    "M0_prepared.joblib": "fadce0fed3b6282da800df7dc20eb0ed2221ac8a75c110ad5378accf951327a2",
+    "M1_prepared.joblib": "5259c1276c43ffcaee883a8ca395403214147b21ad7367a5eeaa4e67116cfbde",
+    "M2_prepared.joblib": "e0bab20e5d09fbda62bcb779a199cc4d2c0bd912c41282ce63c89f0f8c4ccb51",
+    "M3_prepared.joblib": "4efae608b040880744f775b2da5f605bc41685f32a8941d2c53ab4d6534af006",
+    "M4_prepared.joblib": "3343bc6f8584eb26a5cde5efa7bbe634cb3f531773d389b7bd13f2d6eab9b6e6"
+  },
+  "validation": {
+    "M0": {
+      "best_valid_threshold": 0.16338752210140228,
+      "F1_valid": 0.30782552224266696,
+      "AP_valid": 0.24599320612951203,
+      "n_original": 215257,
+      "n_synthetic": 0,
+      "positive_weight_total": 17377.0
+    },
+    "M1": {
+      "best_valid_threshold": 0.280007541179657,
+      "F1_valid": 0.30780960679664526,
+      "AP_valid": 0.24685220423331428,
+      "n_original": 215257,
+      "n_synthetic": 0,
+      "positive_weight_total": 34649.0
+    },
+    "M2": {
+      "best_valid_threshold": 0.1651792675256729,
+      "F1_valid": 0.29480402912137227,
+      "AP_valid": 0.2211881152558789,
+      "n_original": 215257,
+      "n_synthetic": 17272,
+      "positive_weight_total": 34649.0
+    },
+    "M3": {
+      "best_valid_threshold": 0.2239457666873932,
+      "F1_valid": 0.3042097715866025,
+      "AP_valid": 0.23911788228882497,
+      "n_original": 215257,
+      "n_synthetic": 8636,
+      "positive_weight_total": 34649.00000000001
+    },
+    "M4": {
+      "best_valid_threshold": 0.22724014520645142,
+      "F1_valid": 0.2876036320568496,
+      "AP_valid": 0.2212674301361833,
+      "n_original": 215257,
+      "n_synthetic": 8636,
+      "positive_weight_total": 34649.0
+    }
+  },
+  "model_sha256": {
+    "M0.ubj": "7fda22339efb6ada15e9cfada5e9da6f6a2d3328b07e10a4885b48b71db62a48",
+    "M1.ubj": "12755695cd18c01d845c2dddce8153d0b04897756e097bdcf48f2ced2e5e5b94",
+    "M2.ubj": "e719a06b4260924c3c902cff387adc6d76881be66b6bcab938d288b83716e9b6",
+    "M3.ubj": "55214483cead175b6b59f702d80710515da4dcdb858c1e95c4284d538bf6bb16",
+    "M4.ubj": "894172655d054d9c20161c340b812e9bdfb934ec2a8dc5a683f405df654ef9e6"
+  },
+  "integration_manifest_sha256": "fa726f69234a44d9993425851d47d83f418c74cf0fa94c5aebfcf30ea34c584b",
+  "pretest_manifest_sha256": "0df2264193062e01cb0dca57e7de47d94b09b5ffa3c3997d207cda3316d64d50",
+  "comparison": {
+    "delta_AP_M4_minus_M3": -0.016782538865233926,
+    "direction": "negative",
+    "statistical_significance_tested": false
+  },
+  "result_sha256": {
+    "model_summary.csv": "f20b6b08eb59a6d3df90fd5b65fbdc0e93419d3b5aebcc51cd08f00abb2370de",
+    "comparison.json": "beffce4a7a1b5ab26bad81d46faed7ce44e41c2b9785dc611170e4a9c0a56b9a",
+    "predictions_test.csv": "a45dcf2c9c900d2557fc4bcc2133905faed50c7a6264364efda1539c428835eb"
+  },
+  "test_evaluation_marker_sha256": "5531819d8230f90a112e1e423bf5462eefebd251473a0f009c84991e286179d4",
+  "local_run_manifest_sha256": "1a4874ffdb6cf8d325c0464cd96992cb1ff472f14479edf021768dbbfbb4c770",
+  "published_scope": "Aggregate metrics, source/config/artifact checksums only; individual predictions and models remain local ignored."
+}

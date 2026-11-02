@@ -101,6 +101,16 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Threshold / F1_valid:** M0=.16338752210140228/.30782552224266696; M1=.280007541179657/.30780960679664526; M2=.1651792675256729/.29480402912137227; M3=.2239457666873932/.3042097715866025; M4=.22724014520645142/.2876036320568496. Pemilihan kandidat unik, exact F1 tie terbesar; threshold tidak diubah berdasarkan test.
 - **Status:** gerbang integrasi dan pra-test PASS. Catatan ini dibuat dan akan dicommit sebelum menjalankan evaluasi test satu kali. Tidak memilih model/metode dari skor validation dan tidak mengubah desain.
 
+## 2026-11-02 — Evaluasi final test satu kali dan hasil negatif
+
+- **Prasyarat:** checkpoint pra-test `6ec1396` telah dicommit sebelum evaluate; integrasi PASS, lima model/threshold dan hash pretest tersimpan.
+- **Command:** `.venv/bin/python run_cghil_experiment.py evaluate --out results/cghil_m0_m4_20261102`, exit 0. Marker eksklusif dibuat sebelum akses representasi/prediksi test. Tidak rerun evaluation, tuning, atau bootstrap. Test 46127 baris, 3724 positif, 42403 negatif.
+- **Hasil AP test M0–M4:** 0.2479849856429492; 0.24733858492287655; 0.2222909078564284; 0.24014824719054298; 0.22336570832530905. Delta M4−M3=-0.016782538865233926. Hasil negatif dilaporkan, tidak mengubah desain atau klaim kontribusi.
+- **Artefak aman:** `CG_HIL_MODEL_SUMMARY.csv` berisi metrik agregat presisi penuh/threshold/confusion counts; `CG_HIL_COMPARISON.json`; `CG_HIL_EXPERIMENT_MANIFEST.json` (hash source/config/split/model/output, gerbang dan environment tanpa baris/prediksi individual); `CG_HIL_EXPERIMENT_REPORT.md`. Output agregat disalin dari run asli setelah hash hasil diverifikasi, bukan evaluasi ulang.
+- **Artefak lokal:** `results/cghil_m0_m4_20261102/` berisi integration/pretest/run manifests, prepared joblib, UBJ lima model dan predictions_test.csv; log prepare/train/test berada di results. Semua ignored, tidak stage. Manifest generator historis dan kode beku/Bab I/III tetap utuh.
+- **Status:** semua gerbang PASS, training/validasi/test selesai; bukti tidak menunjukkan keunggulan AP M4 vs M3 pada satu split ini. Tidak menguji signifikansi/generalisasi; persetujuan formal pembimbing tidak diasumsikan. Diff/staged dan konsistensi artefak diperiksa sebelum commit akhir; tidak push.
+- **Satu langkah berikutnya:** mahasiswa meninjau interpretasi hasil negatif untuk Bab IV/V bersama pembimbing, tanpa tuning test. Hash commit akhir dilaporkan sesudah commit.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]
