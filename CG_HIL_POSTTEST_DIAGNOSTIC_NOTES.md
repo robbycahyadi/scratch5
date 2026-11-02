@@ -1,7 +1,7 @@
 # CG-HIL — Catatan analisis lanjutan pascahasil M0–M4
 
 **Tanggal pencatatan:** 2 November 2026  
-**Status:** **CATATAN DISKUSI / KANDIDAT ANALISIS**, belum merupakan persetujuan mahasiswa untuk menjalankan eksperimen atau merevisi metode/protokol/RQ.  
+**Status:** **ARAH ANALISIS DISETUJUI UNTUK DILANJUTKAN (2 November 2026)**; belum ada eksperimen tambahan dijalankan dan tidak ada persetujuan untuk merevisi metode/protokol/RQ.  
 **Sumber status utama:** `THESIS_STATE.md`. Hasil primer dan protokol yang telah dibekukan tetap berlaku.
 
 ## Konteks hasil yang tidak diubah
@@ -55,3 +55,40 @@ Pola relevan yang sudah tercatat dari audit semantik:
 3. Analisis kesalahan dan bootstrap hanya jika membantu menjawab pertanyaan interpretasi yang tersisa; tidak otomatis wajib.
 
 **Aturan tetap:** Tidak ada eksekusi eksperimen, tuning, penggantian threshold, penambahan dataset/model, perubahan RQ, revisi protokol beku, atau penggantian kesimpulan hasil test tanpa keputusan eksplisit mahasiswa. Data test yang sudah dibuka tidak boleh dipakai sebagai sarana pencarian konfigurasi yang menang. Persetujuan pembimbing untuk konteks/judul/RQ final tetap persoalan terpisah.
+
+
+## Pembaruan diskusi: cakupan **seluruh metrik** (2 November 2026)
+
+**Arahan mahasiswa:** lanjutkan analisis diagnostik yang telah dibahas, dengan cakupan metrik lengkap, bukan hanya AP. Ini menyetujui arah analisis, **bukan** mengubah RQ, definisi E/U, M4 final, hasil test, atau protokol final. Tidak ada eksperimen tambahan yang dijalankan pada saat pembaruan ini.
+
+### Aturan pelaporan
+
+- **AP (`average_precision_score`) tetap metrik primer** dan kontras M4−M3 tetap keputusan primer dari eksperimen final M0–M4.
+- **ROC-AUC:** pelengkap kualitas pemeringkatan tanpa threshold.
+- **Precision, recall, F1, TP/FP/FN/TN:** pelengkap dengan threshold dan untuk membaca konsekuensi perubahan. Threshold harus ditentukan tanpa informasi test; tidak boleh dipilih atau dioptimalkan menggunakan test.
+- **Diagnosis E/U (data latih):** pada tahap ini analisis deskriptif missingness/kecukupan informasi, komposisi, cakupan dan kelompok; **tidak ada AP/ROC-AUC/precision/recall/F1 untuk E/U saja** tanpa prediksi dan evaluasi yang didefinisikan secara sah.
+- **Ablation A1/A2:** jika dijalankan, tampilkan AP, ROC-AUC dan juga precision, recall, F1 serta confusion matrix dengan kondisi evaluasi dan aturan threshold tertulis; jangan menyimpulkan kontribusi dari AP saja. Perbandingan baru ini **eksploratori pascahoc**, bukan pengganti test final. Karena validasi telah digunakan untuk memilih threshold model awal, F1/precision/recall pada validation yang sama dapat optimistis dan tidak setara dengan estimasi test independen. Tampilkan keterbatasan itu secara eksplisit; **jangan membuka test untuk memilih threshold atau konfigurasi baru**.
+- **Analisis kesalahan dari prediksi lama:** baca perubahan FP/FN/TP/TN dan keterkaitannya dengan kelengkapan, bila artefak lokal masih ada; laporkan sebagai diagnostik pascahoc tanpa tuning.
+- **Ketidakpastian:** bootstrap berpasangan untuk **delta AP primer**, ROC-AUC dapat ditambah sebagai pelengkap; untuk metrik ber-threshold tidak perlu menambah uji statistik otomatis. Pertahankan prediksi dan threshold yang sudah dibekukan, bila dianalisis.
+
+### Pembacaan awal dari ringkasan eksperimen final yang tersedia
+
+Perbandingan M4 (CG-HIL) terhadap M3 (hibrida global) pada test yang sudah selesai:
+
+| Ukuran | M3 | M4 | M4−M3 |
+|---|---:|---:|---:|
+| AP | 0,240148 | 0,223366 | −0,016783 |
+| ROC-AUC | 0,755828 | 0,746071 | −0,009756 |
+| Precision | 0,246080 | 0,230685 | −0,015396 |
+| Recall | 0,400376 | 0,393663 | −0,006713 |
+| F1 | 0,304814 | 0,290902 | −0,013913 |
+| TP | 1491 | 1466 | −25 |
+| FP | 4568 | 4889 | +321 |
+| FN | 2233 | 2258 | +25 |
+| TN | 37835 | 37514 | −321 |
+
+Angka hanya penghitungan selisih dari `CG_HIL_MODEL_SUMMARY.csv`, **bukan eksperimen baru**. Hasil M4 lebih rendah dari M3 pada lima metrik kinerja, serta menghasilkan 25 FN dan 321 FP lebih banyak pada threshold test yang masing-masing telah dikunci berdasarkan validasi.
+
+### Ketersediaan artefak dan batas eksekusi
+
+Berdasarkan laporan, data mentah, model, matriks prepared, serta prediksi per baris ada pada direktori `results/` **lokal dan ignored Git**, bukan di repository. Karena tidak tersedia di sesi ini, diagnosis E/U mendalam, ablation A1/A2, analisis per-baris, dan bootstrap **belum dikerjakan**. Tidak membuat angka, model, atau hasil tambahan secara asumtif. Pekerjaan pertama saat artefak lokal tersedia: diagnosis E/U dari train, baru putuskan ruang eksekusi ablation secara eksplisit.
