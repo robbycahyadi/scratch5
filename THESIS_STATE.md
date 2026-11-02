@@ -1,0 +1,62 @@
+# THESIS_STATE — CG-HIL / Home Credit
+
+**Snapshot handoff:** 2 November 2026
+**Status dokumen:** rekonstruksi berbasis dokumen yang tersedia dan laporan pengguna terakhir. Jika ada `THESIS_STATE.md` yang lebih lengkap/baru di lokasi lain, **gabungkan perubahan material setelah membandingkan isinya; jangan timpa otomatis**.
+
+## Arah penelitian dan keputusan yang sudah dipilih mahasiswa
+
+- Program: Magister Layanan Teknologi Informasi, STEI ITB.
+- Arah kerja: *Completeness-Guided Hybrid Imbalance Learning* (CG-HIL) untuk menangani ketidakseimbangan kelas pada prediksi risiko kesulitan pembayaran kredit konsumen.
+- Data: *Home Credit Default Risk*, terutama `application_train.csv`; unit analisis satu aplikasi kredit; label `TARGET` mengikuti definisi dataset.
+- Metode: oversampling SMOTENC selektif dari kelompok minoritas dengan skor kelengkapan lebih tinggi (E) dan pembobotan observasi minoritas lebih rendah kelengkapannya (U). Seluruh observasi asli dipertahankan. Model prediktif: XGBoost.
+- Tidak menggunakan Federated Learning. Tidak mengubah arah ini tanpa keputusan mahasiswa atau bukti baru yang material.
+- RQ1: merancang dan menjalankan CG-HIL. RQ2: menilai manfaat seleksi kelengkapan terhadap pembanding, terutama hibrida global tanpa seleksi (M3 vs M4).
+- **Belum disetujui secara formal oleh pembimbing** (berdasarkan naskah Bab I): perubahan konteks dari koperasi Indonesia, judul final, dan RQ/kontribusi final. Jangan menyatakan sudah disetujui.
+
+## Fakta sumber dan bukti yang tersedia
+
+- Dataset hasil audit: 307.511 observasi berlabel, positif 24.825 (8,0729%); 120 prediktor setelah mengecualikan ID dan label; SHA-256 raw `application_train.csv`: `52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f`.
+- Split precheck 70/15/15 terstratifikasi, seed 42: train 215.257, validasi 46.127, uji 46.127. Positif train 17.377.
+- Skor `notna()` mentah sebelum imputasi: ambang median positif train `tau=0,6`; E=8.636, U=8.741; S=8.636, `w_U=1+S/U=1,9879876444`; total bobot positif efektif M1–M4 = 34.649.
+- Audit semantik 120 fitur: `DAYS_EMPLOYED=365243` dan `ORGANIZATION_TYPE=XNA` memiliki mask sama pada 55.374 baris keseluruhan. Arti resmi kode khusus tidak terverifikasi; nilainya tidak patut dipakai sebagai durasi normal. Sebagian nilai kosong bersifat potensial struktural; skor kelengkapan **tidak sama** dengan kualitas data.
+- Generator SMOTENC full precheck sebelumnya menciptakan tepat S sintetis, tipe kategori valid, 12 hitungan disesuaikan, dan pemeriksaan bobot konsisten. Laporan yang tersedia: `CG_HIL_GENERATOR_FINAL_VALIDATION.md` dan JSON precheck (periksa versinya).
+- **Pembaruan terakhir menurut laporan langsung pengguna, 2 Nov 2026 (belum diperiksa melalui file/hash commit pada sesi ini):** setelah dua koreksi pascasintesis (`FLAG_OWN_CAR=N -> OWN_CAR_AGE=NaN`, `ORGANIZATION_TYPE=XNA -> DAYS_EMPLOYED=NaN`), 8/8 unit test dan full precheck PASS, 8.636 sintetis, 0 pelanggaran keras menurut validator, 7.879 sel NaN struktural yang disengaja, 0 NaN tidak diharapkan. Model M0–M4 **belum dilatih**. Kontrak pascapemrosesan harus sama untuk M2–M4.
+- Tersisa inkonsistensi **potensial, bukan aturan keras** menurut pengguna: Pensioner/Unemployed dengan non-XNA 26 sintetis; XNA dengan occupation terisi 88; umur mobil lebih tua dari pemohon 135. Jangan otomatis mengoreksi tanpa dasar.
+
+## Rancangan eksperimen (belum hasil)
+
+| Model | Perlakuan | Sintetis | Bobot positif asli |
+|---|---|---:|---|
+| M0 | XGBoost standar | 0 | 1 |
+| M1 | Pembobotan saja | 0 | `1 + 2S/n1` |
+| M2 | SMOTENC global | `2S` | 1 |
+| M3 | Hibrida global | `S` | `1 + S/n1` |
+| M4 | CG-HIL | `S` dari E | E=1; U=`1+S/nU` |
+
+Semua sintetis dan mayoritas berbobot 1. Perbandingan utama M3 vs M4; metrik primer PR-AUC/average precision; pelengkap ROC-AUC, precision, recall, F1, confusion matrix; ambang klasifikasi ditentukan dari validasi menurut satu aturan yang konsisten, bukan dari test. Data uji digunakan hanya untuk evaluasi final.
+
+## Status pekerjaan / tahap sekarang
+
+- [x] Audit dataset dan split
+- [x] Audit semantik 120 prediktor
+- [x] Precheck kelayakan E/U dan bobot
+- [x] Full precheck SMOTENC dan koreksi semantik (menurut laporan terakhir)
+- [ ] **Tugas 6 — Freeze generator:** baca file lokal yang aktual, konfirmasi unit test 8/8, full precheck dan kesesuaian JSON/report terbaru; bekukan konfigurasi/versi, catat commit dan log. **Belum ada bukti hash commit freeze.**
+- [ ] **Tugas 7 — Tetapkan protokol XGBoost:** satu set hiperparameter tetap dan alasan, encoding/NaN, threshold validasi, metrik dan artefak reproducibility; status `USULAN` sampai disetujui mahasiswa.
+- [ ] Jalankan M0–M4 **setelah** 6–7 tuntas; analisis PR-AUC M4 vs M3.
+- [ ] Lanjutkan Bab IV/V; lengkapi Bab II dan selaraskan Bab I–III sesuai bukti.
+
+## Batasan dan aturan membuka ulang
+
+- Belum ada hasil XGBoost, PR-AUC, atau bukti CG-HIL unggul. PASS generator tidak menyatakan keunggulan prediksi.
+- Dataset tunggal; tidak ada klaim generalisasi lintas lembaga/waktu, dampak kebijakan kredit, atau koperasi Indonesia.
+- Tugas 6 tidak boleh mengubah definisi metode hanya untuk mengejar hasil. Tugas 7 tidak boleh melatih M0–M4 ataupun memakai test sebagai tuning.
+- Buka ulang pilihan yang sudah digunakan hanya jika ada kegagalan verifikasi aktual, bukti baru material, perubahan batasan, atau arahan pembimbing. Catat alasannya.
+
+## Sumber rujukan
+
+- `BAB_I_CG_HIL_credit_scoring.md` (28 Okt 2026).
+- `BAB_III_CG_HIL_draf_v0_1.md` (29 Okt 2026; **belum diselaraskan dengan perubahan implementasi terakhir**).
+- `HOME_CREDIT_SEMANTIC_AUDIT.md` dan `HOME_CREDIT_FEATURE_DICTIONARY_AUDITED.csv` (2 Nov 2026).
+- `CG_HIL_GENERATOR_FINAL_VALIDATION.md` dan JSON full precheck terbaru; versi final setelah structural masking harus disinkronkan dari eksperimen lokal.
+- `AI_THESIS_WORKING_CONSTITUTION.md` asli mahasiswa: tersedia di root dan dibaca saat setup governance 2 November 2026; dipertahankan tanpa perubahan byte. SHA-256: `43a805a59121c4498a416f37818eefd3a0d6f6108a291efe2cab084d599f98d4`. Keterangan belum tersedia pada handoff sebelumnya telah teratasi; ini bukan verifikasi freeze generator.

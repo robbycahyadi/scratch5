@@ -1,0 +1,55 @@
+# Raw Home Credit datasets (any directory)
+application_train.csv
+application_test.csv
+bureau.csv
+bureau_balance.csv
+credit_card_balance.csv
+installments_payments.csv
+POS_CASH_balance.csv
+previous_application.csv
+sample_submission.csv
+/data/
+/raw/
+/datasets/
+Home-Credit*.zip
+home-credit*.zip
+
+# Private data and credentials
+.env*
+credentials*
+secrets*
+kaggle.json
+*.pem
+*.key
+/private/
+
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.ipynb_checkpoints/
+
+# Large generated artifacts; retain small evidence explicitly when needed
+/results/
+/models/
+/synthetic/
+*.parquet
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.joblib
+*.ubj
+*.bin
+*.pt
+*.pth
+*.h5
+*.onnx
+*.csv.gz
+*_synthetic.csv
+synthetic_*.csv
