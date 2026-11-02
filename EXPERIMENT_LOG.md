@@ -50,6 +50,15 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Keterbatasan:** smoke historis tidak memiliki structural fields; tidak digunakan sebagai bukti terbaru. Renderer memuat teks unit-test tetap; tidak dijalankan/dianggap bukti. Audit awal JSON lama menemui KeyError karena skema tanpa seed; audit diulang dengan pembacaan field opsional dan selesai, bukan kegagalan generator.
 - **Status:** VERIFIED untuk scope generator tersebut; commit catatan review, manifest, state/log merupakan checkpoint freeze. Tidak mengubah metode, kode generator atau Bab I/III. Raw/large outputs/sintetis/log runtime tidak di-stage; tidak push. SHA aktual dilaporkan setelah commit.
 
+## 2026-11-02 — Audit usulan protokol XGBoost tanpa fitting
+
+- **Status:** USULAN / ISSUES, bukan persetujuan mahasiswa. Freeze selesai pada `75bf630`.
+- **Pemeriksaan aktual:** metadata/discovery modul `.venv` menggunakan `importlib.metadata` dan `importlib.util.find_spec`: XGBoost NOT INSTALLED, module None. Tidak bisa memverifikasi versi/get_params/signature fit/sample_weight/NaN pada XGBoost lokal; tidak menginstal paket dan tidak mengarang kompatibilitas PASS.
+- **Encoder:** `OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1)`, dtype float64, categories auto, encoded_missing_value NaN, max_categories/min_frequency None; fit asli train. Kategori missing diisi string, XNA/Unknown berbeda. Unknown validasi/uji nantinya -1; bukan native categorical XGBoost. Audit read-only independen mengonfirmasi hasil ini.
+- **Perubahan:** tambahkan audit aktual pada `02_XGBOOST_PROTOCOL_USULAN.md`; perbarui status tugas 7 pada state. Parameter desain tetap, Bab I/III tidak diedit. Belum ada file indeks split tersimpan dari precheck; fungsi dua tahap seed42/urutan data harus direplikasi, checksum dicatat saat implementasi kelak.
+- **Larangan dipatuhi:** tidak ada fitting model, threshold search, prediksi/evaluasi test, M0–M4, atau push. Log sensitif dan artefak besar tetap ignored. Pemeriksaan diff/staged sebelum commit dokumentasi.
+- **Satu aksi berikutnya:** mahasiswa meninjau usulan dan menyetujui persiapan environment XGBoost agar kompatibilitas API dapat diperiksa tanpa training. Hash commit dokumentasi dilaporkan setelah commit.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]

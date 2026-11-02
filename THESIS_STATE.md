@@ -42,7 +42,7 @@ Semua sintetis dan mayoritas berbobot 1. Perbandingan utama M3 vs M4; metrik pri
 - [x] Precheck kelayakan E/U dan bobot
 - [x] Full precheck SMOTENC dan koreksi semantik (menurut laporan terakhir)
 - [x] **Tugas 6 — Verifikasi freeze generator (2 Nov 2026):** unit test aktual 8/8 PASS dan full rerun PASS, JSON identik baseline full; sumber dari `9c1c2c9` tidak berubah. Manifest `CG_HIL_GENERATOR_SOURCE_MANIFEST.json` dan review `01_FREEZE_GENERATOR_REVIEW.md` menjadi checkpoint freeze pada commit yang memuat pembaruan ini (hash dilaporkan sesudah commit). Scope hanya generator M4 dan fungsi bersama; generator global M2/M3 belum dijalankan.
-- [ ] **Tugas 7 — Tetapkan protokol XGBoost:** satu set hiperparameter tetap dan alasan, encoding/NaN, threshold validasi, metrik dan artefak reproducibility; status `USULAN` sampai disetujui mahasiswa.
+- [ ] **Tugas 7 — USULAN / ISSUES:** `02_XGBOOST_PROTOCOL_USULAN.md` memuat satu konfigurasi dan audit encoder aktual. XGBoost belum terpasang pada `.venv`, sehingga versi/signature/get_params dan kompatibilitas lokal belum dapat disahkan. Belum ada fitting atau threshold search; perlu persetujuan mahasiswa atas protokol/persiapan environment sebelum eksperimen.
 - [ ] Jalankan M0–M4 **setelah** 6–7 tuntas; analisis PR-AUC M4 vs M3.
 - [ ] Lanjutkan Bab IV/V; lengkapi Bab II dan selaraskan Bab I–III sesuai bukti.
 
