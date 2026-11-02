@@ -86,6 +86,21 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Integrasi aktual:** `.venv/bin/python run_cghil_experiment.py prepare --input application_train.csv --out results/cghil_m0_m4_20261102`, log `results/cghil_m0_m4_20261102_prepare.log`. Status akhir dicatat setelah command selesai; belum ada klaim training/test pada entri ini.
 - **Batas / next:** semua data/model/joblib/prediksi/log lokal di ignored results, tidak push. Lanjut training hanya bila full integrasi PASS; hash commit implementasi dilaporkan setelah verifikasi.
 
+## 2026-11-02 — Gerbang integrasi aktual PASS sebelum training
+
+- **Runner/tests commit:** `959a644`; proses prepare dimulai ketika HEAD masih `4802b50`, kemudian kode yang sama dicommit tanpa perubahan byte; manifest menyimpan HEAD saat prepare selesai beserta SHA256 sumber.
+- **Command:** `.venv/bin/python run_cghil_experiment.py prepare --input application_train.csv --out results/cghil_m0_m4_20261102`, exit 0, INTEGRATION PASS. Semua lima metode 215257 asli, fitur 120 (69/51), split 215257/46127/46127, tau=.6 E/U/S=8636/8741/8636.
+- **Gerbang:** M2=17272, M3=M4=8636 sintetis. Hard remaining semua kosong; structural NaN mask tepat, unknown kategori sintetis 0, prefix asli sama, kolom dan encoder bersama sama. Total positif efektif M1–M4 34649 (M3 representasi floating 34649.00000000001, sesuai toleransi 1e-7); mayoritas/sintetis bobot1. Tidak mengganti formula.
+- **Bukti:** integration_manifest.json lokal mencatat checksum ordered indeks split, sumber/konfigurasi/dependency, kategori encoder serta hash prepared artefact. Semua fit preprocessing/generator/encoder hanya train. Test belum direpresentasikan/dievaluasi; label test hanya dipakai untuk stratifikasi split sesuai kontrak.
+- **Tahap berikutnya:** command `.venv/bin/python run_cghil_experiment.py train --out results/cghil_m0_m4_20261102` dimulai setelah verifikasi manifest PASS; belum mengklaim training selesai. Test tetap terkunci sampai lima model dan threshold tersimpan. Tidak push.
+
+## 2026-11-02 — Lima model selesai, threshold dikunci sebelum test
+
+- **Training:** command train selesai exit 0, tepat lima model M0–M4; masing-masing 300 boosting rounds, parameter identik approved, tanpa early stopping/tuning. Validation tidak dipakai fitting.
+- **Pretest:** `results/cghil_m0_m4_20261102/pretest_manifest.json` tersimpan sebelum evaluasi, SHA256 `0df2264193062e01cb0dca57e7de47d94b09b5ffa3c3997d207cda3316d64d50`. Check sumber/prepared/model hash PASS; test marker belum ada.
+- **Threshold / F1_valid:** M0=.16338752210140228/.30782552224266696; M1=.280007541179657/.30780960679664526; M2=.1651792675256729/.29480402912137227; M3=.2239457666873932/.3042097715866025; M4=.22724014520645142/.2876036320568496. Pemilihan kandidat unik, exact F1 tie terbesar; threshold tidak diubah berdasarkan test.
+- **Status:** gerbang integrasi dan pra-test PASS. Catatan ini dibuat dan akan dicommit sebelum menjalankan evaluasi test satu kali. Tidak memilih model/metode dari skor validation dan tidak mengubah desain.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]
