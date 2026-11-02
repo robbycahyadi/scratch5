@@ -60,3 +60,9 @@ Semua sintetis dan mayoritas berbobot 1. Perbandingan utama M3 vs M4; metrik pri
 - `HOME_CREDIT_SEMANTIC_AUDIT.md` dan `HOME_CREDIT_FEATURE_DICTIONARY_AUDITED.csv` (2 Nov 2026).
 - `CG_HIL_GENERATOR_FINAL_VALIDATION.md` dan JSON full precheck terbaru; versi final setelah structural masking harus disinkronkan dari eksperimen lokal.
 - `AI_THESIS_WORKING_CONSTITUTION.md` asli mahasiswa: tersedia di root dan dibaca saat setup governance 2 November 2026; dipertahankan tanpa perubahan byte. SHA-256: `43a805a59121c4498a416f37818eefd3a0d6f6108a291efe2cab084d599f98d4`. Keterangan belum tersedia pada handoff sebelumnya telah teratasi; ini bukan verifikasi freeze generator.
+
+## Catatan keputusan analisis lanjutan — 2 November 2026
+
+- Mahasiswa menyatakan **lanjutkan analisis diagnostik CG-HIL dengan cakupan semua metrik yang relevan**, tidak hanya AP. AP tetap **metrik primer**, sedangkan ROC-AUC, precision, recall, F1, dan confusion matrix tetap pelengkap sesuai protokol beku.
+- Ruang kandidat: (1) diagnosis kelengkapan dan E/U pada train (prioritas awal), (2) ablation diagnostik sumber sintesis vs pembobotan A1/A2 (eksploratori pascahoc), (3) analisis kesalahan FP/FN pada prediksi beku, (4) estimasi ketidakpastian delta AP; bukan kewajiban menjalankan keempatnya.
+- Rincian dan keterbatasan pelaporan: `CG_HIL_POSTTEST_DIAGNOSTIC_NOTES.md`. Hasil M0–M4, RQ, metode, protokol, dan test final **tidak diubah**. Tidak ada eksperimen baru yang sudah dijalankan; artefak mentah/prediksi hanya tersedia lokal (`results/`, ignored Git).
