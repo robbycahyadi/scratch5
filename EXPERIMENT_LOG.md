@@ -111,6 +111,17 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Status:** semua gerbang PASS, training/validasi/test selesai; bukti tidak menunjukkan keunggulan AP M4 vs M3 pada satu split ini. Tidak menguji signifikansi/generalisasi; persetujuan formal pembimbing tidak diasumsikan. Diff/staged dan konsistensi artefak diperiksa sebelum commit akhir; tidak push.
 - **Satu langkah berikutnya:** mahasiswa meninjau interpretasi hasil negatif untuk Bab IV/V bersama pembimbing, tanpa tuning test. Hash commit akhir dilaporkan sesudah commit.
 
+## 2026-11-02 — Diagnosis pascates Phase 1 E/U (train-only)
+
+- **Mandat:** karakterisasi missingness dan validitas completeness, bukan optimasi M4. Awal branch main, HEAD `8b3159b`, working tree bersih. Catatan pascates yang diminta tidak ditemukan; data, kode, protokol dan checksum train tersedia sehingga diagnosis aman dilanjutkan tanpa mengarang definisi A1/A2.
+- **Perubahan:** menambah `diagnose_cghil_eu.py` dan `CG_HIL_EU_DIAGNOSTIC_REPORT.md`; entri log ini. Tidak mengubah state historis, bab, protokol, generator/runner, maupun artefak M0–M4.
+- **Command aktual:** `.venv/bin/python diagnose_cghil_eu.py --out results/eu_phase1_20261102`, exit 0 PASS. Python 3.13.5, numpy 2.5.4, pandas 3.1.0, sklearn 1.9.1; seed42. Raw hash sebelum/sesudah sama; hash urutan train cocok manifest, semua hash source beku cocok. Seleksi 120 fitur identik, train/positif/tau/E/U = 215257/17377/.6/8636/8741.
+- **Batas data:** label sumber hanya untuk mereproduksi split tetap; CSV fitur diparse per chunk, hanya baris train dipertahankan dan dideskripsikan. Tidak membuka prediksi test atau prepared/model artifacts. Hasil JSON/profil 120 fitur ada pada direktori results baru yang ignored, tanpa overwrite.
+- **Validasi sempit:** pemeriksaan Python tambahan mengonfirmasi jumlah sel missing per fitur cocok agregat tiap kelompok, dan E+U=positif untuk setiap fitur (PASS). Tidak menjalankan unit test generator atau eksperimen karena kode beku tidak berubah. Pemeriksaan diff/staged dilakukan sebelum commit.
+- **Temuan:** 8633/8741 U (98,76%) seluruh hunian kosong vs 777/8636 E (9,00%); hunian menjelaskan secara aritmetis 97,72% gap mean skor. Kelengkapan di luar hunian E/U 96,67%/95,56%. Semua 142086 bukan pemilik mobil umur mobil NaN; fixed-tau stress test penyebut umur mobil memindahkan 1483 U ke sisi E, masking sentinel hanya 1 E ke sisi U. Tidak mengadopsi skor alternatif.
+- **Status:** COMPLETE untuk diagnosis Phase 1; asumsi raw completeness sebagai proksi kelayakan sintesis melemah, bukan bukti kausal penyebab AP negatif. A1/A2 direkomendasikan hanya sebagai kandidat pemisahan efek komponen, definisi/protokol menunggu review mahasiswa. Tidak ablation/bootstrap/error analysis/retraining/tuning/test evaluation atau push.
+- **Langkah berikutnya:** berhenti dan menunggu review/persetujuan mahasiswa. Hash commit lokal dilaporkan sesudah commit.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]
