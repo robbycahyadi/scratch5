@@ -1,6 +1,8 @@
 # Tugas 7 — Usulan protokol eksperimen XGBoost M0–M4 CG-HIL
 Tanggal: 2026-11-02
-**Status: USULAN; belum persetujuan mahasiswa dan bukan hasil eksperimen.** Tidak mengubah RQ, lima konfigurasi, dataset, maupun desain CG-HIL.
+**Status: DISETUJUI / FROZEN — 2026-11-02.** Mahasiswa secara eksplisit menyetujui protokol ini dengan `xgboost-cpu==3.4.1` dan seluruh parameter tetap. Ini bukan hasil eksperimen atau persetujuan formal pembimbing. Tidak mengubah RQ, lima konfigurasi, dataset, maupun desain CG-HIL.
+
+Riwayat nama berkas, judul usulan, dan audit USULAN/ISSUES di bawah dipertahankan sebagai catatan historis. Ketiadaan XGBoost pada audit terdahulu telah diatasi dan kompatibilitas tanpa fit PASS pada `731650b`. Mandat terbaru mengizinkan implementasi/training/evaluasi bertahap hanya setelah gerbang sebelumnya PASS; test tidak digunakan untuk tuning.
 
 ## 1. Keputusan yang hendak diuji
 RQ1 membuktikan mekanisme CG-HIL dapat dilaksanakan. RQ2 menilai apakah seleksi berdasarkan kelengkapan menambah manfaat: perbandingan **utama** `average_precision(M4) - average_precision(M3)` pada test yang sama. M0/M1/M2 adalah konteks perbandingan tambahan. Hasil negatif/setara adalah hasil penelitian yang sah.

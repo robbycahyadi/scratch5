@@ -69,6 +69,14 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Status:** PASS terbatas import/API/input; protokol tetap USULAN dan training M0–M4 belum disetujui. State diperbarui, riwayat audit sebelumnya dipertahankan. Tidak ada threshold search, prediksi atau evaluasi; tidak push. Diff/staged diperiksa sebelum commit; SHA aktual dilaporkan sesudah commit.
 - **Satu langkah berikutnya:** mahasiswa meninjau dan menyetujui protokol sebelum memberi mandat implementasi/eksperimen berikutnya.
 
+## 2026-11-02 — Freeze administratif protokol disetujui mahasiswa
+
+- **Keputusan:** mahasiswa menyetujui eksplisit protokol `02_XGBOOST_PROTOCOL_USULAN.md`, xgboost-cpu==3.4.1 dan seluruh parameter/formula pada 2 November 2026. Bukan persetujuan formal pembimbing.
+- **Preflight:** HEAD `731650b117e54405efe6a3f86fe0fa497b8e355b`; dua berkas handoff `PROTOCOL_FREEZE_APPROVAL.md` dan `CODEX_IMPLEMENT_M0_M4.md` untracked dibaca dan dipertahankan. Tidak ada perubahan tracked awal.
+- **Perubahan:** status protokol DISETUJUI/FROZEN, state tugas 7 selesai; audit lama dipertahankan sebagai sejarah. Tidak mengubah parameter, sumber generator, metode, atau Bab I/III. Commit administrasi terpisah sebelum implementasi; tiga dokumen saja di-stage.
+- **Mandat selanjutnya:** implementasi dan uji integrasi train-only; training/threshold validasi serta test satu kali hanya setelah gerbang PASS. Belum ada hasil training pada checkpoint ini. Tidak push sesuai instruksi terbaru.
+- **Verifikasi:** git diff --check dan daftar staged diperiksa sebelum commit; hash aktual dilaporkan setelah commit.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]
