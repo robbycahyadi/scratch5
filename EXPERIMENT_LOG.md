@@ -59,6 +59,16 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Larangan dipatuhi:** tidak ada fitting model, threshold search, prediksi/evaluasi test, M0–M4, atau push. Log sensitif dan artefak besar tetap ignored. Pemeriksaan diff/staged sebelum commit dokumentasi.
 - **Satu aksi berikutnya:** mahasiswa meninjau usulan dan menyetujui persiapan environment XGBoost agar kompatibilitas API dapat diperiksa tanpa training. Hash commit dokumentasi dilaporkan setelah commit.
 
+## 2026-11-02 — Dependency CPU dan kompatibilitas XGBoost tanpa fit
+
+- **Mandat / awal:** hanya dependency dan kompatibilitas, bukan persetujuan protokol/training. HEAD `38aa18d31ce868e726b6ccd9e1ef5e51869a0fd0`, working tree bersih.
+- **Instalasi:** `.venv/bin/python -m pip index versions xgboost-cpu` menampilkan stabil terbaru 3.4.1; `.venv/bin/python -m pip install --only-binary=:all: xgboost-cpu==3.4.1` berhasil. Dipilih CPU-only untuk menghindari dependency GPU yang tidak diperlukan. Pin tambahan pada `requirements-xgboost.txt`, bukan mengubah manifest historis freeze. Modul `xgboost` dan distribusi `xgboost-cpu` aktual 3.4.1; Python 3.13.5. `pip check`: No broken requirements found.
+- **Pemeriksaan aktual:** command `.venv/bin/python` inline membaca dict XGB_PARAMS persis dari blok protokol melalui AST, instansiasi XGBClassifier, assert seluruh parameter get_params sama, tampilkan get_xgb_params, inspect signature fit yang memuat keyword-only sample_weight=None; default missing=NaN. Tidak memanggil fit.
+- **Input tanpa training:** array buatan 2x3 float64 `[[1, NaN, -1], [2, 3, 0]]` diterima DMatrix(missing=NaN), 2 baris/3 kolom/5 nilai nonmissing. Kode -1 tetap nilai numerik, NaN diperlakukan missing. Tidak memakai data aplikasi/validation/test; model tidak memiliki `_Booster`. Ini uji penerimaan matriks/API saja, bukan bukti training atau parameter kernel efektif setelah fitting.
+- **Kontrak / integritas:** OrdinalEncoder diinstansiasi tanpa fit, get_params sesuai sumber: categories auto, dtype float64, encoded_missing_value NaN, handle_unknown use_encoded_value, unknown_value -1, min_frequency/max_categories None. SHA256 semua sumber/kamus pada manifest freeze sama; semua versi dependency lama pada manifest sama sesudah instalasi. Tidak mengubah preprocessing, parameter, metode, Bab I/III, atau sumber generator.
+- **Status:** PASS terbatas import/API/input; protokol tetap USULAN dan training M0–M4 belum disetujui. State diperbarui, riwayat audit sebelumnya dipertahankan. Tidak ada threshold search, prediksi atau evaluasi; tidak push. Diff/staged diperiksa sebelum commit; SHA aktual dilaporkan sesudah commit.
+- **Satu langkah berikutnya:** mahasiswa meninjau dan menyetujui protokol sebelum memberi mandat implementasi/eksperimen berikutnya.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]

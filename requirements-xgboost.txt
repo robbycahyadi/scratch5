@@ -1,0 +1,2 @@
+# CPU-only XGBoost; adds to the existing frozen generator environment.
+xgboost-cpu==3.4.1
