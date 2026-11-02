@@ -77,6 +77,15 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Mandat selanjutnya:** implementasi dan uji integrasi train-only; training/threshold validasi serta test satu kali hanya setelah gerbang PASS. Belum ada hasil training pada checkpoint ini. Tidak push sesuai instruksi terbaru.
 - **Verifikasi:** git diff --check dan daftar staged diperiksa sebelum commit; hash aktual dilaporkan setelah commit.
 
+## 2026-11-02 — Implementasi runner dan unit test sebelum training
+
+- **Protokol:** checkpoint persetujuan administratif `4802b50`, sebelum implementasi. Berkas handoff mahasiswa dipertahankan dan akan dicatat bersama implementasi.
+- **Implementasi:** `run_cghil_experiment.py` dengan tahap prepare/train/evaluate, menggunakan fungsi generator/validator beku tanpa mengubahnya. Hash sumber/dependency diverifikasi, sumber param diekstrak dari protokol approved. Manifest integrasi, checksum split/artefak, encoder train-only, prefix asli, sintetis dan bobot diperiksa. Training dan test memiliki marker eksklusif; test baru boleh setelah lima model/threshold dan pretest manifest tersimpan.
+- **Unit command:** `.venv/bin/python -m unittest -v test_cghil_semantics test_run_cghil_experiment`: PASS 15/15. Uji data buatan termasuk bobot, split, unknown=-1/NaN tanpa refit, seluruh 15 parameter dan F1 exact tie terbesar. Percobaan awal test baru menemukan helper menolak all-negative labels; helper diperbaiki mendukung F1=0 dan threshold terbesar, bukan mengubah protokol. Suite akhir PASS.
+- **Review statis terfokus:** tidak ada blocker material tersisa; pengaman one-shot berlaku per direktori, operator tidak boleh mengulang evaluasi lewat direktori baru. Tidak ada tuning/early stopping.
+- **Integrasi aktual:** `.venv/bin/python run_cghil_experiment.py prepare --input application_train.csv --out results/cghil_m0_m4_20261102`, log `results/cghil_m0_m4_20261102_prepare.log`. Status akhir dicatat setelah command selesai; belum ada klaim training/test pada entri ini.
+- **Batas / next:** semua data/model/joblib/prediksi/log lokal di ignored results, tidak push. Lanjut training hanya bila full integrasi PASS; hash commit implementasi dilaporkan setelah verifikasi.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]
