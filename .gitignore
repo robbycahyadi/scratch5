@@ -13,6 +13,8 @@ sample_submission.csv
 /datasets/
 Home-Credit*.zip
 home-credit*.zip
+# Downloaded dictionary archive; extracted dictionaries and provenance stay tracked
+/semantic_audit_sources/HomeCredit_columns_description.csv.zip
 
 # Private data and credentials
 .env*

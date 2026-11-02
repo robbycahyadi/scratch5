@@ -1,0 +1,13 @@
+{
+  "downloaded_at_utc": "2026-11-02T03:01:54.113863+00:00",
+  "source_url": "https://raw.githubusercontent.com/gridl/workshop_2018_dsgo/2b7b0e95828b5a95e0e783b7ea764e5962fb3fb4/00_data/HomeCredit_columns_description.csv.zip",
+  "repository_commit": "2b7b0e95828b5a95e0e783b7ea764e5962fb3fb4",
+  "source_class": "secondary public GitHub workshop mirror; not authenticated against official Kaggle bytes",
+  "official_reference": "https://www.kaggle.com/competitions/home-credit-default-risk/data",
+  "archive_sha256": "047657f4f1357a58914e4961ea11ba67540a3d771d5f6cacd64edc4282a95ad9",
+  "csv_sha256": "eef7665398228a80f7367c9258220c5fbe1038f3f54094244f354d54e2d4fb03",
+  "archive_member": "HomeCredit_columns_description.csv",
+  "csv_extraction": "unmodified member bytes",
+  "derivative_utf8": {"file": "HomeCredit_columns_description.utf8.csv", "transformation": "Original bytes decoded cp1252 and re-encoded UTF-8 for inspection; original preserved", "encoding_verification_limit": "cp1252 interpretation used successfully; original encoding not officially specified"},
+  "verification_limit": "Official Kaggle data page returned only title via web_fetch; no official checksum or download verified. Definitions cross-checked against harnalashok Jupyter Book."
+}

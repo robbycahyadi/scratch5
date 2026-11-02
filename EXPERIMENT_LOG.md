@@ -28,6 +28,18 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Pemeriksaan staged:** percobaan pertama `git diff --cached --check` menemukan tiga trailing whitespace Markdown pada state/log handoff; diperbaiki hanya spasi akhir tanpa mengubah isi historis. Pemeriksaan diulang sebelum commit. Konstitusi tidak diubah.
 - **Commit setup:** hash aktual dilaporkan dalam jawaban setelah commit; tidak mengarang hash di log.
 
+## 2026-11-02 — Snapshot baseline sebelum tugas 6
+
+- **Tujuan / persetujuan:** mahasiswa menyetujui checkpoint baseline agar working tree bersih; bukan persetujuan freeze generator atau hasil eksperimen.
+- **Kondisi awal:** branch `main`, commit sebelumnya `f23efda`; 16 entri untracked pada status ringkas (termasuk direktori sumber audit), tanpa perubahan tracked.
+- **Perubahan:** memasukkan 18 berkas dokumen/kode/kamus/provenance yang sudah ada sebagai snapshot; tidak mengubah isi berkas penelitian. `.gitignore` ditambah pengecualian arsip unduhan kamus sumber; CSV hasil ekstraksi dan provenance tetap dilacak.
+- **Verifikasi:** pemeriksaan ukuran dengan `python3` menunjukkan seluruh kandidat <2 MB (terbesar kamus audit 92.135 byte); pemindaian pola credential terbatas tidak menemukan kecocokan. Hash CSV sumber dan arsip cocok dengan `dictionary_provenance.json`. `git check-ignore` mengonfirmasi CSV aplikasi mentah, arsip Home Credit, `.venv/`, dan arsip kamus tidak masuk snapshot.
+- **Kendala pemeriksaan:** alias `python` tidak tersedia; digunakan `python3`. Pemeriksaan awal arsip menemukan tambahan metadata `__MACOSX/`; arsip tidak diubah/dihapus, tetapi dikecualikan dari Git. Pemindaian credential bukan jaminan audit keamanan menyeluruh.
+- **Status / batasan:** snapshot kondisi awal saja; tidak menjalankan unit test, precheck, generator, training, atau evaluasi. Klaim pada laporan lama belum diverifikasi ulang. Seed/versi library ML tidak berlaku untuk checkpoint Git ini.
+- **Pemeriksaan commit:** `git diff --check`, `git diff --cached --check`, dan daftar staged diperiksa sebelum commit; temuan format bawaan bila ada dipertahankan sebagai snapshot dan dilaporkan, bukan diperbaiki dengan mengubah kode/data.
+- **Temuan whitespace:** `git diff --cached --check` melaporkan 209 temuan pada dua CSV kamus sumber (31 pada asli, 178 pada UTF-8). Byte sumber dipertahankan agar hash/provenance tetap benar; pemeriksaan ulang mengecualikan hanya dua CSV tersebut. Pemeriksaan lanjutan juga menemukan empat spasi akhir Markdown pada Bab I/III (dua per dokumen); dipertahankan sebagai format bawaan snapshot. Pengecualian pemeriksaan akhir terbatas pada dua CSV sumber dan dua dokumen Bab tersebut. Ini pengecualian format sumber terdokumentasi, bukan klaim seluruh staged bebas whitespace.
+- **Langkah berikutnya:** mulai tugas 6 hanya setelah mandat terpisah. Hash commit checkpoint dilaporkan setelah commit.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]
