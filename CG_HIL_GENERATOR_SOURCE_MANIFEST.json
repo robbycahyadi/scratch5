@@ -1,0 +1,75 @@
+{
+  "status": "VERIFIED",
+  "source_commit": "9c1c2c98bd1f211b6a8f467fe74bb4cddf24db5a",
+  "source_sha256": {
+    "precheck_smotenc_cghil.py": "3345948bd21f3fefb0b33caacb32c6cdba755aee3ca1456821fcb3da5f25bc1a",
+    "cghil_semantics.py": "fdd45b0111d0d4330b5864e8634f5a8e76758919e4fa57fd15bf8d0ad4cac4b5",
+    "test_cghil_semantics.py": "1a98a14e6a74a7aa31d6c037d47f0f6350b7b8a029aa29184baecf1b3ca04d44",
+    "generate_final_validation_report.py": "29c7a38a5b58b381a1da990611d3cc2ca6f9d5bb428c7a391b463b61fec3b55b",
+    "HOME_CREDIT_FEATURE_DICTIONARY_AUDITED.csv": "7717c7892cc28b7b98e83df711ecc4ae7b28b245baf33ec4fb66b967c8bbee73"
+  },
+  "python": "3.13.5",
+  "dependencies": {
+    "cloudpickle": "3.1.2",
+    "imbalanced-learn": "0.14.2",
+    "joblib": "1.6.0",
+    "narwhals": "2.28.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "pip": "25.1.1",
+    "python-dateutil": "4.0.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "sklearn-compat": "0.1.6",
+    "threadpoolctl": "3.7.0",
+    "tzdata": "2026.6"
+  },
+  "configuration": {
+    "seed": 42,
+    "split_test_size": 0.3,
+    "holdout_test_size": 0.5,
+    "k_neighbors": 5,
+    "full": true,
+    "completeness": "raw predictor notna proportion before sentinel masking; E > train-positive median; U <= median",
+    "S": "min(nE,nU)",
+    "generator_numeric": "train median + StandardScaler",
+    "encoder": {
+      "class": "OrdinalEncoder",
+      "handle_unknown": "use_encoded_value",
+      "unknown_value": -1,
+      "fit_scope": "original train only"
+    }
+  },
+  "raw_dataset_sha256": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f",
+  "baseline_sha256": {
+    "results/generator_final_full/precheck_smotenc.json": "6270b676397cbb872f11839673deab628a44b445ea9a2627ed8c3dad0490cf12",
+    "results/generator_final_smoke/precheck_smotenc.json": "04647363d429c26c6fbb1b7bf8f7fae1b205e1bf8968c9d2ad7b9af83ec7a116",
+    "CG_HIL_GENERATOR_FINAL_VALIDATION.md": "fb60fb3f9f11e0033a26411e503aeaf791b7e77a4672c2a5a088f718f05cc03d"
+  },
+  "rerun_directory": "results/freeze_verification_20261102_1332",
+  "scope": "M4 generator and shared semantic function only; no M2/M3 generator execution and no predictive model training",
+  "verification": {
+    "unittest": "8/8 PASS",
+    "full_precheck_exit_code": 0,
+    "full_json_equals_baseline": true,
+    "baseline_files_unchanged": true,
+    "source_unchanged": true,
+    "raw_dataset_unchanged": true,
+    "report_semantic_rows_matched": 95,
+    "synthetic_created": 8636,
+    "structural_nan_cells": 7879,
+    "unexpected_nan_cells": 0,
+    "hard_remaining": {},
+    "smoke_baseline_scope": "historical pre-structural-fix; not current-source verification",
+    "commands": [
+      ".venv/bin/python -m unittest -v test_cghil_semantics",
+      ".venv/bin/python precheck_smotenc_cghil.py --input application_train.csv --out results/freeze_verification_20261102_1332/full --full"
+    ]
+  },
+  "evidence_sha256": {
+    "results/freeze_verification_20261102_1332/unittest.log": "79b5d869481bf0f40d7c850c401799d57e6b3f28d6a2689f4320054cbe42cdb5",
+    "results/freeze_verification_20261102_1332/precheck.log": "22ea65dd0dedbf9c3ed8110b94f65e675eff947e983882126c963b52211b7e82",
+    "results/freeze_verification_20261102_1332/full/precheck_smotenc.json": "6270b676397cbb872f11839673deab628a44b445ea9a2627ed8c3dad0490cf12"
+  },
+  "configuration_sha256": "06e158e0f5cc69adb78d56c2b18dcd0d9ed321b6182903a5d501e695d6b7cfa5"
+}

@@ -40,6 +40,16 @@ Tujuan: **log ringkas hasil dan keputusan yang benar-benar terjadi**, bukan todo
 - **Temuan whitespace:** `git diff --cached --check` melaporkan 209 temuan pada dua CSV kamus sumber (31 pada asli, 178 pada UTF-8). Byte sumber dipertahankan agar hash/provenance tetap benar; pemeriksaan ulang mengecualikan hanya dua CSV tersebut. Pemeriksaan lanjutan juga menemukan empat spasi akhir Markdown pada Bab I/III (dua per dokumen); dipertahankan sebagai format bawaan snapshot. Pengecualian pemeriksaan akhir terbatas pada dua CSV sumber dan dua dokumen Bab tersebut. Ini pengecualian format sumber terdokumentasi, bukan klaim seluruh staged bebas whitespace.
 - **Langkah berikutnya:** mulai tugas 6 hanya setelah mandat terpisah. Hash commit checkpoint dilaporkan setelah commit.
 
+## 2026-11-02 — Verifikasi dan freeze generator M4
+
+- **Mandat:** tugas 6 dan persiapan tugas 7, tanpa training M0–M4. Branch `main`, HEAD sumber `9c1c2c98bd1f211b6a8f467fe74bb4cddf24db5a`; awal hanya dua dokumen handoff baru untracked.
+- **Command / hasil:** `.venv/bin/python -m unittest -v test_cghil_semantics` PASS 8/8; `.venv/bin/python precheck_smotenc_cghil.py --input application_train.csv --out results/freeze_verification_20261102_1332/full --full` exit 0 PASS. Log runtime tersimpan lokal di folder baru, tidak menimpa baseline.
+- **Bukti:** JSON rerun identik seluruh objek dengan baseline full; 95 baris aturan tabel report cocok baseline. Seed 42, E/U/S=8636/8741/8636, tau=.6, sintetis 8636, total positif efektif 34649, hard remaining kosong, NaN struktural 7879 dan tidak diharapkan 0. SHA256 raw tetap `52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f` sebelum/sesudah.
+- **Source/config/environment:** tercatat di `CG_HIL_GENERATOR_SOURCE_MANIFEST.json`; Python 3.13.5, numpy 2.5.4, pandas 3.1.0, sklearn 1.9.1, imblearn 0.14.2. Sumber/kamus/report/JSON baseline tidak berubah. Konstitusi asli tidak berubah.
+- **Audit kontrak:** structural masking hanya pada sintetis sesudah inverse scaling dan hitungan, sebelum encoder asli-train bersama. M2/M3 belum diimplementasikan/dijalankan sebagai generator global; pengujian fungsi bersama tidak membuktikan integrasi M2/M3.
+- **Keterbatasan:** smoke historis tidak memiliki structural fields; tidak digunakan sebagai bukti terbaru. Renderer memuat teks unit-test tetap; tidak dijalankan/dianggap bukti. Audit awal JSON lama menemui KeyError karena skema tanpa seed; audit diulang dengan pembacaan field opsional dan selesai, bukan kegagalan generator.
+- **Status:** VERIFIED untuk scope generator tersebut; commit catatan review, manifest, state/log merupakan checkpoint freeze. Tidak mengubah metode, kode generator atau Bab I/III. Raw/large outputs/sintetis/log runtime tidak di-stage; tidak push. SHA aktual dilaporkan setelah commit.
+
 ## Entri berikutnya (diisi Codex dari pekerjaan aktual)
 
 ### YYYY-MM-DD — [Nama checkpoint]
